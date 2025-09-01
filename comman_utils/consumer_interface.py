@@ -21,13 +21,13 @@ class Consumer:
             self.topic_antisemitic,self.topic_not_antisemitic,
             value_deserializer=lambda m: json.loads(m.decode('utf-8')),
             bootstrap_servers=['localhost:9092'],
-            consumer_timeout_ms=10000,
+
             auto_offset_reset='earliest',
             group_id=self.group_name
         )
 
         return consumer
-#
+#consumer_timeout_ms=10000,
 # p = Consumer(topic_clean_not_antisemitic,topic_clean_antisemitic,group_clean)
 # o = p.get_consumer_events()
 

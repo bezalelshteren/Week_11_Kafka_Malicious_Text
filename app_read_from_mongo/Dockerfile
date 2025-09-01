@@ -1,13 +1,12 @@
 FROM python:3.12-slim
 
-COPY requirements.txt requirements.txt
+WORKDIR /app
 
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-RUN python -m nltk.downloader vader_lexicon
+COPY app_read_from_mongo/ .
 
-COPY . .
+EXPOSE 8008
 
-EXPOSE 8004
-
-CMD ["uvicorn", "app.server:app", "--host", "0.0.0.0", "--port","8004"]
+CMD ["uvicorn", "server:app", "--host", "0.0.0.0", "--port", "8008"]

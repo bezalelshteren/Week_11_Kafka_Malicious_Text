@@ -1,11 +1,12 @@
 FROM python:3.12-slim
 
-COPY requirements.txt requirements.txt
+WORKDIR /app
 
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-RUN python -m nltk.downloader vader_lexicon
 
-COPY . .
+COPY app_enricher/ .
+COPY comman_utils/ ./comman_utils
 
-CMD ["uvicorn", "app.main:app"]
+CMD ["python", "manager_the_enricher.py"]

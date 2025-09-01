@@ -13,7 +13,7 @@ print("is connected")
 
 
 @app.get("/read_from_antisemitic")
-def read_from_mongo():
+def read_from_mongo_anti():
     try:
         collection_name = os.getenv("TOPIC_TO_MONGO_NOT_ANTI")
         all_data = {}
@@ -25,8 +25,8 @@ def read_from_mongo():
 
 
 
-@app.get("/read_from_antisemitic")
-def read_from_mongo():
+@app.get("/read_from_not_antisemitic")
+def read_from_mongo_not_anti():
     try:
         collection_name = os.getenv("TOPIC_TO_MONGO_ANTI")
         all_data = {}
